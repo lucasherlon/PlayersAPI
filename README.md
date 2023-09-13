@@ -1,6 +1,9 @@
 # PlayersAPI
 <p>A football players Rest API made with Asp Net</p>
 <hr>
-- build: dotnet build
-- run: dotnet run
-- database: MySQL
+<ul>
+<li>build: dotnet build</li>
+<li>run: dotnet run</li>
+<li>database: MySQL</li>
+</ul>
+

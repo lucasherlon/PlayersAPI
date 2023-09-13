@@ -3,6 +3,16 @@ using PlayersAPI.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:5173") // Replace with the origin of your React app
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -14,6 +24,7 @@ builder.Services.AddDbContext<AppDbContext>(
 ));
 
 var app = builder.Build();
+app.UseCors("ReactPolicy");
 
 if (app.Environment.IsDevelopment())
 {

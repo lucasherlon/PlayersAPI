@@ -7,7 +7,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>
     {
-        builder.WithOrigins("http://localhost:5173") // Replace with the origin of your React app
+        builder.WithOrigins("http://localhost:5173") // rota da minha aplicação React
                .AllowAnyHeader()
                .AllowAnyMethod();
     });

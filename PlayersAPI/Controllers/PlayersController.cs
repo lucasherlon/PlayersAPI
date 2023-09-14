@@ -34,10 +34,6 @@ namespace PlayersAPI.Controllers
             return player;
         }
 
-        [HttpGet("{name}")]
-
-
-
         [HttpPost]
         public async Task<ActionResult<Player>> Post(Player player)
         {

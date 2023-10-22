@@ -6,5 +6,6 @@
 <li>run: dotnet run</li>
 <li>database: MySQL</li>
 <li>can be consumed by a react application</li>
+<li>Supports JWT auth</li>
 </ul>
 

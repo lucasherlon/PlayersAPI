@@ -17,6 +17,7 @@ namespace PlayersAPI.Controllers
         }
 
         [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {

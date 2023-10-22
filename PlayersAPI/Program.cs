@@ -41,15 +41,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+// Doing the mysql connection
 string? mySqlConnectionStr = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseMySql(mySqlConnectionStr,
     ServerVersion.AutoDetect(mySqlConnectionStr)
 ));
 
+// Building the app
 var app = builder.Build();
 
+// Creating the login endpoint
 app.MapPost("/login", [AllowAnonymous] (UserModel userModel, ITokenService tokenService) =>
 {
     if (userModel == null)
@@ -79,11 +81,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHttpsRedirection();
+app.MapControllers();
+
 
 app.Run();

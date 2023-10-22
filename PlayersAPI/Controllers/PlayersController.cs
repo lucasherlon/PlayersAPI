@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PlayersAPI.Models;
 
@@ -15,6 +16,7 @@ namespace PlayersAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
@@ -72,5 +74,6 @@ namespace PlayersAPI.Controllers
 
             return Ok(player);
         }
+
     }
 }

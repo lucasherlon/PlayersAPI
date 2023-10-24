@@ -16,15 +16,13 @@ namespace PlayersAPI.Controllers
             _context = context;
         }
 
-        [Authorize]
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
             return await _context.Players.ToListAsync();
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int:min(1)}")]
         public async Task<ActionResult<Player>> GetPlayer(int id)
         {
             var player = await _context.Players.FindAsync(id);
@@ -37,6 +35,8 @@ namespace PlayersAPI.Controllers
             return player;
         }
 
+        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<Player>> Post(Player player)
         {
@@ -46,6 +46,8 @@ namespace PlayersAPI.Controllers
             return new CreatedAtRouteResult(new { id = player.PlayerId }, player);
         }
 
+        [Authorize]
+        [AllowAnonymous]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Put(int id, Player player)
         {
@@ -60,6 +62,8 @@ namespace PlayersAPI.Controllers
             return Ok(player);
         }
 
+        [Authorize]
+        [AllowAnonymous]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
